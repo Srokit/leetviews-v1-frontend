@@ -23,20 +23,20 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="biMainLayoutCol w-2/5">
-        <div className="w-full h-4/5 flex flex-col justify-between">
-          <div className="w-full h-1/4 mb-10 border-solid border-black">
+      <div className="biMainLayoutCol w-2/5 align-center">
+        <div className="w-full h-4/5 flex flex-col justify-between items-center">
+          <div className="w-4/5 h-1/4 mb-10 overflow-y-scroll shadow bg-primary opacity-50 p-5">
             <h2>Question 1</h2>
             <p>Write an algorithm which sorts an array of integers from least to greatest in O(NlogN) time and O(1) space (in-place).</p>
             <p>Example Input: A = [1, 5, 2, 3, 10]</p>
             <p>Example Output: nothing (sort in place)</p>
           </div>
-          <form onSubmit={e => e.preventDefault()} className="w-full h-4/5 flex flex-col justify-between">
-            <div className="w-full h-4/5 border-solid border-black">
-              <textarea defaultValue={codeAreaDefVal} className="w-full h-full bg-secondary opacity-75 text-black"></textarea>
+          <form onSubmit={e => e.preventDefault()} className="h-4/5 flex flex-col justify-between" style={{'width': '95%'}}>
+            <div className="w-full h-4/5 shadow">
+              <textarea defaultValue={codeAreaDefVal} className="w-full h-full bg-secondary opacity-75 text-black border-none"></textarea>
             </div>
-            <div className="w-full h-1/8 border-solid border-black">
-              <button className="w-1/2 h-full bg-primary opacity-50">Submit</button>
+            <div className="w-full h-1/8">
+              <button className="w-1/2 h-full bg-primary opacity-50 shadow">Submit</button>
             </div>
           </form>
         </div>

@@ -16,7 +16,7 @@
 }
 
 .biTranscriptCont {
- @apply flex flex-col items-center justify-center w-full h-4/5 border-solid border-black;
+ @apply flex flex-col items-center justify-center w-full h-4/5 shadow-lg;
 }
 
 .biTranscriptBg {
