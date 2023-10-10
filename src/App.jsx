@@ -33,10 +33,10 @@ function App() {
           </div>
           <form onSubmit={e => e.preventDefault()} className="w-full h-4/5 flex flex-col justify-between">
             <div className="w-full h-4/5 border-solid border-black">
-              <textarea defaultValue={codeAreaDefVal} className="w-full h-full bg-slate-700 opacity-50"></textarea>
+              <textarea defaultValue={codeAreaDefVal} className="w-full h-full bg-secondary opacity-75 text-black"></textarea>
             </div>
             <div className="w-full h-1/8 border-solid border-black">
-              <button className="w-1/2 h-full bg-slate-700 opacity-50">Submit</button>
+              <button className="w-1/2 h-full bg-primary opacity-50">Submit</button>
             </div>
           </form>
         </div>

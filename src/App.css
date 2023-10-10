@@ -20,7 +20,7 @@
 }
 
 .biTranscriptBg {
-  @apply z-0 bg-slate-700 opacity-50 w-full h-full;
+  @apply z-0 bg-primary opacity-50 w-full h-full;
 }
 
 .logo {
