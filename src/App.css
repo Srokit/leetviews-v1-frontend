@@ -1,0 +1,60 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+.appBg {
+  background-image: url('assets/imgs/bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.biMainLayoutCol {
+  @apply flex flex-col items-center justify-center w-1/5 h-full;
+}
+
+.biTranscriptCont {
+ @apply flex flex-col items-center justify-center w-full h-4/5 border-solid border-black;
+}
+
+.biTranscriptBg {
+  @apply z-0 bg-slate-700 opacity-50 w-full h-full;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
