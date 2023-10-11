@@ -3,13 +3,18 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-import AiHintTranscript from './AiHintTranscript'
+import { apiGetAiHint } from './api'
+
+import AppContext from './Context'
 
 const codeAreaDefVal = `\
   function f(A) {
     // your code here
   }
 `
+
+const INT_S = 60;
+const ADD_HINT_INTERVAL_MS = INT_S * 1000;
 
 let RECOG = null;
 
@@ -46,15 +51,25 @@ function App() {
     setIsRecording(!isRecording)
   }
 
+  const [aiScriptParts, setAiScriptParts] = useState([])
+
+  const onAskForHint = () => {
+    console.log("Asking for hint")
+    if (intervieweeScript.trim().length === 0) return
+    apiGetAiHint(intervieweeScript).then((data) => {
+      setAiScriptParts(prevParts => [...prevParts, data])
+    })
+  }
+
   return (
     <div className="flex flex-col w-full h-full justify-center appBg">
       <div className="w-full flex flex-row justify-around" style={{'height': '90%'}}>
         <div className="biMainLayoutCol">
-          <div className="biTranscriptCont">
-            <div className="biTranscriptBg">
-            </div>
-            <div className="absolute z-50">
-              {intervieweeScript}
+          <div className="biTranscriptCont overflow-y-scroll relative bg-primary/50 py-10 px-5">
+              <div className="relative z-50 top-0 left-0 h-full w-full">
+                <div className="flex flex-col w-full h-full">
+                {intervieweeScript}
+              </div>
             </div>
           </div>
           <div className="h-12 w-full bg-primary opacity-50 shadow-lg mt-12 flex flex-row">
@@ -80,10 +95,23 @@ function App() {
           </div>
         </div>
         <div className="biMainLayoutCol">
-          <div className="biTranscriptCont overflow-y-scroll relative bg-primary/50">
+          <div className="biTranscriptCont overflow-y-scroll relative bg-primary/50 py-10 px-5">
             <div className="relative z-50 top-0 left-0 h-full w-full">
-              <AiHintTranscript />
+              <div className="flex flex-col w-full h-full">
+                {aiScriptParts.map((part, idx) => (
+                  <>
+                    <div key={idx} className="border-b-2 mb-2 bg-transparent">
+                      {part}
+                    </div>
+                    <hr className="aiHintTranscriptLineRule" />
+                  </>
+                ))
+                }
+              </div>
             </div>
+          </div>
+          <div className="h-12 w-full bg-primary opacity-50 shadow-lg mt-12 flex flex-row">
+            <button onClick={() => {onAskForHint()}} className="w-full h-full bg-primary opacity-50 shadow">Ask For Hint</button>
           </div>
         </div>
       </div>
