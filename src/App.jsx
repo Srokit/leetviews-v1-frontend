@@ -61,6 +61,16 @@ function App() {
     })
   }
 
+  const [hasRunOnce, setHasRunOnce] = useState(false)
+
+  const [testsNumPassed, setTestsNumPassed] = useState(5)
+  const [testsNumTotal, setTestsNumTotal] = useState(5)
+
+  const onSubmitAnswer = () => {
+    console.log("Submitting answer")
+    setHasRunOnce(true)
+  }
+
   return (
     <div className="flex flex-col w-full h-full justify-center appBg">
       <div className="w-full flex flex-row justify-around" style={{'height': '90%'}}>
@@ -84,14 +94,20 @@ function App() {
               <p>Example Input: A = [1, 5, 2, 3, 10]</p>
               <p>Example Output: nothing (sort in place)</p>
             </div>
-            <form onSubmit={e => e.preventDefault()} className="h-4/5 flex flex-col justify-between" style={{'width': '95%'}}>
+            <form onSubmit={e => {e.preventDefault(); onSubmitAnswer()}} className="h-4/5 flex flex-col justify-between" style={{'width': '95%'}}>
               <div className="w-full h-4/5 shadow">
                 <textarea defaultValue={codeAreaDefVal} className="w-full h-full bg-secondary opacity-75 text-black border-none"></textarea>
               </div>
               <div className="w-full h-1/8">
-                <button className="w-1/2 h-full bg-primary opacity-50 shadow">Submit</button>
+                <button type="submit" className="w-1/2 h-full bg-primary opacity-50 shadow">Submit</button>
               </div>
             </form>
+          </div>
+          <div className="w-full h-1/4 bg-slate-800/50 mt-10 flex items-center justify-center">
+            {
+              (!hasRunOnce) ? "Run to see test results" :
+                `${testsNumPassed}/${testsNumTotal} tests passed`
+            }
           </div>
         </div>
         <div className="biMainLayoutCol">
