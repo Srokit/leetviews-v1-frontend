@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-import { apiGetAiHint } from './api'
+import { apiGetAiHint, apiPostTestCode } from './api'
 
 import AppContext from './Context'
 
@@ -66,9 +66,15 @@ function App() {
   const [testsNumPassed, setTestsNumPassed] = useState(5)
   const [testsNumTotal, setTestsNumTotal] = useState(5)
 
+  const [intervieweeCode, setIntervieweeCode] = useState(codeAreaDefVal)
+
   const onSubmitAnswer = () => {
     console.log("Submitting answer")
-    setHasRunOnce(true)
+    apiPostTestCode(intervieweeCode).then((data) => {
+      setTestsNumPassed(data.numCorrect)
+      setTestsNumTotal(data.numTotal)
+      setHasRunOnce(true)
+    })
   }
 
   return (
@@ -96,7 +102,7 @@ function App() {
             </div>
             <form onSubmit={e => {e.preventDefault(); onSubmitAnswer()}} className="h-4/5 flex flex-col justify-between" style={{'width': '95%'}}>
               <div className="w-full h-4/5 shadow">
-                <textarea defaultValue={codeAreaDefVal} className="w-full h-full bg-secondary opacity-75 text-black border-none"></textarea>
+                <textarea defaultValue={codeAreaDefVal} className="w-full h-full bg-secondary opacity-75 text-black border-none" onChange={e => {setIntervieweeCode(e.target.value)}}></textarea>
               </div>
               <div className="w-full h-1/8">
                 <button type="submit" className="w-1/2 h-full bg-primary opacity-50 shadow">Submit</button>

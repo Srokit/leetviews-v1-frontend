@@ -16,3 +16,19 @@ export const apiGetAiHint = async (dialogue) => {
   return body.data;
 }
 
+export const apiPostTestCode = async (code) => {
+  // Fetch using post method passing code in body as json
+  const response = await fetch(urlBase + '/testcode', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      code,
+      questId: 0,
+    })
+  });
+  const body = await response.json();
+  return body.data;
+}
+
