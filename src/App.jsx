@@ -3,6 +3,8 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+import AiHintTranscript from './AiHintTranscript'
+
 const codeAreaDefVal = `\
   function f(A) {
     // your code here
@@ -36,7 +38,7 @@ function App() {
   const onRecordClick = () => {
     console.log("Starting recording")
     if (RECOG == null) {
-      console.error("Attempted to record with speechRecognition not initialized")
+      console.error("SpeechRecognition not initialized")
       return
     }
     if (isRecording) RECOG.stop()
@@ -52,8 +54,11 @@ function App() {
             <div className="biTranscriptBg">
             </div>
             <div className="absolute z-50">
-              Your Transcript
+              {intervieweeScript}
             </div>
+          </div>
+          <div className="h-12 w-full bg-primary opacity-50 shadow-lg mt-12 flex flex-row">
+            <button onClick={() => {onRecordClick()}} className="w-full h-full bg-primary opacity-50 shadow">{(isRecording) ? <>Stop Voice</> : <>Record Voice</>}</button>
           </div>
         </div>
         <div className="biMainLayoutCol w-2/5 align-center">
@@ -75,15 +80,10 @@ function App() {
           </div>
         </div>
         <div className="biMainLayoutCol">
-          <div className="biTranscriptCont">
-            <div className="biTranscriptBg">
+          <div className="biTranscriptCont overflow-y-scroll relative bg-primary/50">
+            <div className="relative z-50 top-0 left-0 h-full w-full">
+              <AiHintTranscript />
             </div>
-            <div className="absolute z-50">
-              {intervieweeScript}
-            </div>
-          </div>
-          <div className="h-12 w-full bg-primary opacity-50 shadow-lg mt-12 flex flex-row">
-            <button onClick={() => {onRecordClick()}} className="w-full h-full bg-primary opacity-50 shadow">{(isRecording) ? <>Stop Voice</> : <>Record Voice</>}</button>
           </div>
         </div>
       </div>
