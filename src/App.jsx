@@ -88,8 +88,8 @@ function App() {
               </div>
             </div>
           </div>
-          <div className="h-12 w-full bg-primary opacity-50 shadow-lg mt-12 flex flex-row">
-            <button onClick={() => {onRecordClick()}} className="w-full h-full bg-primary opacity-50 shadow">{(isRecording) ? <>Stop Voice</> : <>Record Voice</>}</button>
+          <div className="h-12 w-full shadow-lg mt-12 flex flex-row">
+            <button onClick={() => {onRecordClick()}} className="text-white w-full h-full bg-primary/50 shadow">{(isRecording) ? <>Stop Voice</> : <>Record Voice</>}</button>
           </div>
         </div>
         <div className="biMainLayoutCol w-2/5 align-center">
@@ -132,8 +132,8 @@ function App() {
               </div>
             </div>
           </div>
-          <div className="h-12 w-full bg-primary opacity-50 shadow-lg mt-12 flex flex-row">
-            <button onClick={() => {onAskForHint()}} className="w-full h-full bg-primary opacity-50 shadow">Ask For Hint</button>
+          <div className="h-12 w-full shadow-lg mt-12 flex flex-row">
+            <button onClick={() => {onAskForHint()}} className="w-full h-full bg-primary/50 shadow text-white">Ask For Hint</button>
           </div>
         </div>
       </div>
